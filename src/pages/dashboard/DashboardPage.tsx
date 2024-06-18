@@ -1,11 +1,12 @@
 import React from 'react';
 import { IoAccessibilityOutline, IoHeartOutline, IoListOutline, IoLockClosedOutline, IoPawOutline } from 'react-icons/io5';
 import { WhiteCard } from '../../components';
-import { useBearStore } from '../../stores';
+import { useBearStore, usePersonStore } from '../../stores';
 
 export const Dashboard = React.memo(() => {
 
-  const totalBears = useBearStore(state => state.computed.totalBears);
+  const totalBears = useBearStore(state => state.totalBears);
+  const firstPerson = usePersonStore(state => state.firstName);
 
   return (
     <>
@@ -18,14 +19,14 @@ export const Dashboard = React.memo(() => {
         <WhiteCard centered>
           <IoPawOutline size={ 50 } className="text-indigo-600" />
           <h2>Osos</h2>
-          <p>{ totalBears }</p>
+          <p>{ totalBears() }</p>
         </WhiteCard>
 
 
         <WhiteCard centered>
           <IoAccessibilityOutline size={ 50 } className="text-indigo-600" />
           <h2>Persona</h2>
-          <p>Información</p>
+          <p>{ firstPerson }</p>
         </WhiteCard>
 
 
